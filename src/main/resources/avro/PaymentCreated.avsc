@@ -1,14 +1,14 @@
 {
     "type": "record",
-    "name": "CheckoutCreatedEvent",
-    "namespace": "br.com.vitor.checkout.event",
+    "name": "PaymentCreatedEvent",
+    "namespace": "br.com.vitor.payment.event",
     "fields": [
         {
             "name": "checkoutCode",
             "type": ["string"]
         },
         {
-            "name": "status",
+            "name": "paymentCode",
             "type": ["string"]
         }
     ]

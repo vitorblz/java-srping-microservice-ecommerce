@@ -1,16 +1,18 @@
 package br.com.vitor.checkout.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Builder
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "checkout")
 public class CheckoutEntity {
 
     @Id
@@ -19,4 +21,13 @@ public class CheckoutEntity {
 
     @Column
     private String code;
+
+    @Column
+    @Enumerated(value = EnumType.STRING)
+    private Status status;
+
+    public enum Status {
+        CREATED,
+        APPROVED
+    }
 }
