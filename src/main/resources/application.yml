@@ -1,6 +1,9 @@
+server:
+  port: 8088
+
 spring:
   datasource:
-    url: jdbc:postgresql://${DATABASE_SERVER_NAME:localhost}:5432/${DATABASE_PORT}
+    url: jdbc:postgresql://${DATABASE_SERVER_NAME}:${DATABASE_PORT}/${DATABASE_NAME}
     username: ${DATABASE_USER_NAME}
     password: ${DATABASE_USER_PASSWORD}
     driver-class-name: org.postgresql.Driver
@@ -23,8 +26,9 @@ spring:
     stream:
       kafka:
         binder:
+          schema.registry.url: http://${SCHEMA_REGISTRY}:8081
           autoCreateTopics: true
-          brokers: localhost:9092
+          brokers: ${KAFKA_BROKERS}:9092
           configuration:
             value:
               deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
@@ -44,8 +48,9 @@ spring:
           group: ${spring.application.name}
           consumer:
             use-native-decoding: true
+
   kafka:
     properties:
       schema:
         registry:
-          url: http://localhost:8081
+          url: http://${SCHEMA_REGISTRY}:8081
